@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head th:fragment="headstuff">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-Width, initial-scale=1" />
+    <title>To Do List</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <style>body{padding-bottom: 70px}</style>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <nav class="navbar navbar-default" th:fragment="navbar">
+        <div class="container-fluid">
+
+            <div class="collapse navbar-collapse"
+                 id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/secure">Secure Page</a></li>
+                    <li><a href="/">Insecure Page</a></li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>
+<div sec:authorize="isAnonymous()">
+    <div th:fragment="navlinks2">
+        <nav class="navbar navbar-default" th:fragment="navbar2">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="/">Insecure Page</a>
+                </div>
+                <div class="collapse navbar-collapse"
+                     id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/secure">Secure Page</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom"
+     th:fragment="footer">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<th:block th:fragment="jslinks">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+</th:block>
+</body>
+</html>

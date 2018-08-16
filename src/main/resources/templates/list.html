@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: headstuff"></head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<table class="table">
+
+    <tr>
+        <th>Tasks</th>
+        <a href="/add">Add task</a>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td th:text="${task.description}"></td>
+
+        <td>
+            <a th:href="@{/update/{id}(id=${task.id})}">Update</a>
+            <a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+<nav th:replace="base :: footer"></nav>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>
