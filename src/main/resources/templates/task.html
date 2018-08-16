@@ -4,7 +4,7 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 <h1>Add Task</h1>
-<form  action="#" th:action="@{/process2}"
+<form  action="#" th:action="@{/processTask}"
        th:object="${task}" method="post">
     <input type="hidden" th:field="*{id}" />
     <mark><strong>

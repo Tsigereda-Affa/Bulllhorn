@@ -82,7 +82,7 @@ public class HomeController {
         model.addAttribute("task", new Task());
         return "task";
     }
-    @PostMapping("/process2")
+    @PostMapping("/processTask")
     public String processForm( @ModelAttribute Task task, BindingResult result, Model model)
     {
         String username = getUser().getUsername();
