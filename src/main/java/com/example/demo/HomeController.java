@@ -92,6 +92,17 @@ public class HomeController {
         model.addAttribute("messages", messageRepository.findByUsername(username));
         return "list";
     }
+    @RequestMapping("/messaginglist")
+    public String messagelist(HttpServletRequest request, Authentication authentication, Principal principal, Model model) {
+        Boolean isAdmin = request.isUserInRole("ADMIN");
+        Boolean isUser = request.isUserInRole("USER");
+        UserDetails userDetails = (UserDetails)
+                authentication.getPrincipal();
+
+        String username = principal.getName();
+        model.addAttribute("messages", messageRepository.findByUsername(username));
+        return "messaginglist";
+    }
 
     private User getUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
