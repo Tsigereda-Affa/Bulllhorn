@@ -6,15 +6,15 @@
 <table class="table">
 
     <tr>
-        <th>Tasks</th>
-        <a href="/add">Add task</a>
+        <th>Messages</th>
+        <a href="/add">Add Message</a>
     </tr>
-    <tr th:each="task : ${tasks}">
-        <td th:text="${task.description}"></td>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.content}"></td>
 
         <td>
-            <a th:href="@{/update/{id}(id=${task.id})}">Update</a>
-            <a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
+            <a th:href="@{/update/{id}(id=${message.id})}">Update</a>
+            <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>
         </td>
     </tr>
 </table>

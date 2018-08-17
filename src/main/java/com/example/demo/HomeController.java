@@ -19,7 +19,7 @@ public class HomeController {
     private UserService userService;
 
     @Autowired
-    TaskRepository taskRepository;
+    MessageRepository messageRepository;
     @Autowired
     UserRepository userRepository;
 
@@ -57,12 +57,12 @@ public class HomeController {
 
     @RequestMapping("/update/{id}")
     public String userUpdate(@PathVariable("id") long id, Model model) {
-        model.addAttribute("task", taskRepository.findById(id).get());
-        return "task";
+        model.addAttribute("message", messageRepository.findById(id).get());
+        return "message";
     }
     @RequestMapping("/delete/{id}")
-    public String delCourse(@PathVariable("id") long id){
-        taskRepository.deleteById(id);
+    public String delMessage(@PathVariable("id") long id){
+        messageRepository.deleteById(id);
         return "redirect:/secure";
     }
 
@@ -73,22 +73,22 @@ public class HomeController {
         UserDetails userDetails = (UserDetails)
                 authentication.getPrincipal();
         String username = getUser().getUsername();
-        model.addAttribute("tasks", taskRepository.findByUsername(username));
+        model.addAttribute("messages", messageRepository.findByUsername(username));
         return "list";
 
     }
     @GetMapping("/add")
     public String addTask(Model model){
-        model.addAttribute("task", new Task());
-        return "task";
+        model.addAttribute("message", new Message());
+        return "message";
     }
-    @PostMapping("/processTask")
-    public String processForm( @ModelAttribute Task task, BindingResult result, Model model)
+    @PostMapping("/processMessage")
+    public String processForm(@ModelAttribute Message message, BindingResult result, Model model)
     {
         String username = getUser().getUsername();
-        task.setUsername(username);
-        taskRepository.save(task);
-        model.addAttribute("tasks", taskRepository.findByUsername(username));
+        message.setUsername(username);
+        messageRepository.save(message);
+        model.addAttribute("messages", messageRepository.findByUsername(username));
         return "list";
     }
 
