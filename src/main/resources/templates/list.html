@@ -11,7 +11,8 @@
     </tr>
     <tr th:each="message : ${messages}">
         <td th:text="${message.content}"></td>
-
+        <td th:text="${message.sentby}"></td>
+        <td th:text="${message.posteddate}"></td>
         <td>
             <a th:href="@{/update/{id}(id=${message.id})}">Update</a>
             <a th:href="@{/delete/{id}(id=${message.id})}">Delete</a>

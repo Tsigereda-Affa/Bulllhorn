@@ -46,7 +46,8 @@ public class HomeController {
     }
 
     @RequestMapping("/")
-    public String index() {
+    public String ListMessages(Model model) {
+        model.addAttribute("messages", messageRepository.findAll());
         return "index";
     }
 

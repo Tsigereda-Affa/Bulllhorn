@@ -7,7 +7,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Insecure page</h2>
+<!--<h2>Insecure page</h2>-->
 
 <div sec:authorize="isAuthenticated()">
     This content is only shown to authenticated users.<br />
@@ -25,11 +25,24 @@
     [ROLE_USER, ROLE_ADMIN]</span><br /><br />
 </div>
 <div sec:authorize="isAnonymous()">
-    This content is only show to anonymous users.
+    <!--This content is only show to anonymous users.-->
+    <table>
+    <tr>
+    <th>Content</th>
+    <th>Sent By</th>
+    <th>Date</th>
+    </tr>
+    <tr th:each="message : ${messages}">
+        <td th:text="${message.content}"></td>
+        <td th:text="${message.sentby}"></td>
+        <td th:text="${message.posteddate}"></td>
+    </tr>
+    </table>
+
 </div>
 <a href="/login">Login</a>
-<a href="/logout">Logout</a>
+<!--<a href="/logout">Logout</a>-->
 <a href="/register">Register</a>
-<a href="/secure">Secure page</a>
+<!--<a href="/secure">Secure page</a>-->
 </body>
 </html>
